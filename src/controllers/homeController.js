@@ -1,6 +1,13 @@
+const conection = require("../config/database");
 const getHomepage = (req, res) => {
+  let Users = [];
+  conection.query("select * from Users", function (err, result, fields) {
+    Users = result;
+    console.log("check result>>>", result);
+    console.log.apply("check users>>>", Users);
+    res.send(JSON.stringify(Users));
+  });
   //xu ly data
-  res.send("Hello World!");
 };
 const getABC = (req, res) => {
   res.render("sample.ejs");
