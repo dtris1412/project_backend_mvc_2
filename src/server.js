@@ -6,10 +6,13 @@ const webRoutes = require("./routes/web.js");
 const conection = require("./config/database.js");
 const port = process.env.PORT || 8081;
 const hostname = process.env.HOST_NAME;
-
+//config request.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 configViewEngine(app);
 app.use("/", webRoutes);
 configViewEngine(app);
+
 conection.query("select * from Users", function (err, result, fields) {
   console.log("check result>>>", result);
 });
